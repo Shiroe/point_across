@@ -1,28 +1,22 @@
 extends RigidBody2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var bounceVectorUp: Vector2 = Vector2(20, -50);
+var bounceVectorDown: Vector2 = Vector2(5, 60);
 
 func _physics_process(delta: float) -> void:
 	pass
-	# Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
 
-	# Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#print("velocity: ", velocity);
-
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	#move_and_slide()
-	
 func ApplyForce(dir: Vector2) -> void:
-	self.apply_central_impulse(dir * 10);
+	var angle = get_angle_to(dir);
+	var force = Vector2(
+		clamp(dir.x, -100, 100),
+		clamp(dir.y, -100, 100)
+	);
+	rotation = lerp(rotation, deg_to_rad(-15), 1);
+	linear_velocity = force * 10
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		ApplyForce(bounceVectorUp);
+	if event.is_action_pressed("ui_down"):
+		ApplyForce(bounceVectorDown);

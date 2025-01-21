@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yphvfko6kh7v"]
+[gd_scene load_steps=14 format=3 uid="uid://yphvfko6kh7v"]
 
 [ext_resource type="Script" uid="uid://b4tuwh8h2kcxp" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://bsrt1ipg1povy" path="res://player.gd" id="1_u52ul"]
@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_f2txt")
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5xgho"]
 a = Vector2(-50, 0)
-b = Vector2(12800, 0)
+b = Vector2(128000, 0)
 
 [sub_resource type="Resource" id="Resource_1ainy"]
 script = ExtResource("4_f2txt")
@@ -33,10 +33,6 @@ gradient = SubResource("Gradient_1ainy")
 width = 50
 height = 50
 fill_from = Vector2(0, 1)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f2txt"]
-radius = 14.1384
-height = 68.4688
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_1ainy")
@@ -56,7 +52,7 @@ modulate = Color(1, 0, 1, 1)
 shape = SubResource("SegmentShape2D_5xgho")
 
 [node name="Line2D" type="Line2D" parent="Floor"]
-points = PackedVector2Array(-50, 20, 12800, 0)
+points = PackedVector2Array(-50, 20, 128000, 0)
 width = 40.0
 default_color = Color(0.679768, 0.526549, 0.94519, 1)
 
@@ -104,10 +100,7 @@ position = Vector2(463, 437)
 script = ExtResource("1_u52ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(0, -12)
 texture = ExtResource("4_1ainy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-2, -5)
-rotation = 1.45192
-shape = SubResource("CapsuleShape2D_f2txt")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(-33, 21, -19, -19, 35, 3, 23, 14)
