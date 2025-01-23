@@ -1,14 +1,15 @@
-[gd_scene load_steps=31 format=3 uid="uid://yphvfko6kh7v"]
+[gd_scene load_steps=32 format=3 uid="uid://yphvfko6kh7v"]
 
 [ext_resource type="Script" uid="uid://b4tuwh8h2kcxp" path="res://level.gd" id="1_1ainy"]
 [ext_resource type="Script" uid="uid://bsrt1ipg1povy" path="res://player.gd" id="1_u52ul"]
 [ext_resource type="Script" uid="uid://c0hiswstnbeqo" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_0b4ue"]
 [ext_resource type="Script" uid="uid://oa484rqn0lgt" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_f2txt"]
 [ext_resource type="Script" uid="uid://bhlk88hlxgids" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_f2txt"]
-[ext_resource type="Texture2D" uid="uid://v2q30o2i0fus" path="res://PlaneSprite.png" id="6_1ainy"]
+[ext_resource type="Texture2D" uid="uid://v2q30o2i0fus" path="res://assets/PlaneSprite.png" id="6_1ainy"]
+[ext_resource type="Texture2D" uid="uid://c1wwru3r8wq3n" path="res://assets/CastleTexture.png" id="7_n6hdu"]
 
 [sub_resource type="Gradient" id="Gradient_n6hdu"]
-colors = PackedColorArray(1, 0.811765, 0.6, 1, 1, 0.811765, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_km5ld"]
 gradient = SubResource("Gradient_n6hdu")
@@ -38,7 +39,6 @@ height = 50
 fill_from = Vector2(0, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n6hdu"]
-load_path = "res://.godot/imported/plane-raw.png-185011dc679225f1f3d52c008463a595.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ainy"]
 atlas = ExtResource("6_1ainy")
@@ -157,12 +157,13 @@ animations = [{
 script = ExtResource("1_1ainy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-50, 0)
+modulate = Color(0.498039, 0.819608, 0.72549, 1)
+position = Vector2(-50, -300)
 texture = SubResource("GradientTexture2D_km5ld")
 centered = false
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(0, 720)
+position = Vector2(0, 780)
 
 [node name="FloorCollisionShape2D" type="CollisionShape2D" parent="Floor"]
 modulate = Color(1, 0, 1, 1)
@@ -170,30 +171,28 @@ shape = SubResource("SegmentShape2D_5xgho")
 
 [node name="Line2D" type="Line2D" parent="Floor"]
 points = PackedVector2Array(-50, 0, 128000, 0)
-width = 40.0
+width = 200.0
 default_color = Color(0.0980392, 0.0901961, 0.0862745, 1)
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(463, 437)
+position = Vector2(640, 210)
 script = ExtResource("3_0b4ue")
 follow_mode = 2
 follow_target = NodePath("../Player")
-zoom = Vector2(1.5, 1.5)
 tween_resource = SubResource("Resource_1ainy")
 tween_on_load = false
 limit_left = 0
-limit_top = 0
+limit_top = -150
 limit_bottom = 1000
 metadata/_custom_type_script = ExtResource("3_0b4ue")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-position = Vector2(463, 437)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(640, 210)
 process_callback = 0
 limit_left = 0
-limit_top = 0
+limit_top = -150
 limit_bottom = 1000
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -233,7 +232,7 @@ modulate = Color(0.65098, 0.611765, 0.67451, 1)
 texture = SubResource("GradientTexture2D_n6hdu")
 
 [node name="Player" type="RigidBody2D" parent="."]
-position = Vector2(463, 437)
+position = Vector2(328, 75)
 script = ExtResource("1_u52ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -248,3 +247,15 @@ polygon = PackedVector2Array(-40, 20, -32, -22, 40, 1, 12, 16)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_v7sqt")
 autoplay = "default"
+
+[node name="TowerStaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(202, 343)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TowerStaticBody2D4"]
+visible = false
+polygon = PackedVector2Array(-165, 365, -130, -245, 140, -245, 170, 365)
+
+[node name="Sprite2D" type="Sprite2D" parent="TowerStaticBody2D4"]
+position = Vector2(0, 57)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_n6hdu")

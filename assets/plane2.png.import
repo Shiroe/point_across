@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6dl4xef3rl62"
-path.s3tc="res://.godot/imported/plane2.png-385b0cab190ae7fd814b7914a77a2492.s3tc.ctex"
+path.s3tc="res://.godot/imported/plane2.png-ac88eb915ea5c85d90df1504e8d2f8c6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://plane2.png"
-dest_files=["res://.godot/imported/plane2.png-385b0cab190ae7fd814b7914a77a2492.s3tc.ctex"]
+source_file="res://assets/plane2.png"
+dest_files=["res://.godot/imported/plane2.png-ac88eb915ea5c85d90df1504e8d2f8c6.s3tc.ctex"]
 
 [params]
 
