@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bibqg065h8mx5"]
+
+[ext_resource type="Script" path="res://soldier.gd" id="1_ba3fx"]
+[ext_resource type="Texture2D" uid="uid://chun2hkfc8arl" path="res://assets/ToySoldier.png" id="1_siw8g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ba3fx"]
+radius = 14.0
+height = 126.0
+
+[node name="Soldier" type="CharacterBody2D"]
+script = ExtResource("1_ba3fx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_siw8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ba3fx")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
